@@ -1,5 +1,6 @@
 <script>
 	import SearchBgImage from '$lib/images/search-bg-blur.webp';
+	import Search from './Search.svelte';
 </script>
 
 <svelte:head>
@@ -14,4 +15,8 @@
 	<div class="text-3xl font-bold text-slate-50">
 		Millions of movie for you to discover and explore!
 	</div>
+
+	<form on:submit={() => alert('this is not yet implemented')}>
+		<Search />
+	</form>
 </div>
