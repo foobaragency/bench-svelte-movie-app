@@ -16,7 +16,7 @@
 		Millions of movie for you to discover and explore!
 	</div>
 
-	<form on:submit={() => alert('this is not yet implemented')}>
+	<form method="get" class="mt-4" action="/search">
 		<Search />
 	</form>
 </div>
