@@ -17,7 +17,7 @@
 			title={movie.title}
 			releaseDate={movie.release_date}
 			poster={movie.poster_path}
-			imageWidth={342}
+			imageWidth="342"
 		/>
 	{/each}
 </div>
