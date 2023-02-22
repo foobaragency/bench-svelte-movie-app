@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import MovieCard from '../MovieCard.svelte';
 	const query = $page.url.searchParams.get('query');
 	import Search from '../Search.svelte';
 
@@ -11,5 +12,5 @@
 	<Search placeholder={query || ''} />
 </form>
 {#each data.results as movie}
-	<p>{movie.title}</p>
+	<MovieCard title={movie.title} releaseDate={movie.release_date} poster={movie.poster_path} />
 {/each}
