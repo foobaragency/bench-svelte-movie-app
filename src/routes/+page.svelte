@@ -1,6 +1,10 @@
 <script>
 	import SearchBgImage from '$lib/images/search-bg-blur.webp';
+	import Category from './Category.svelte';
 	import Search from './Search.svelte';
+
+	/** @type {import('./$types').PageData} */
+	export let data;
 </script>
 
 <svelte:head>
@@ -19,4 +23,11 @@
 	<form method="get" class="mt-4" action="/search">
 		<Search />
 	</form>
+</div>
+
+<div class="px-1.5">
+	<h2 class="text:xl mb-3 font-bold lg:text-3xl">Most popular 🔥</h2>
+	<Category movies={data.popular.results} />
+	<h2 class="text:xl mb-3 font-bold lg:text-3xl">Upcoming 👀</h2>
+	<Category movies={data.upcoming.results} />
 </div>
