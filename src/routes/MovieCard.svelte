@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let title: string, releaseDate: string, poster: string;
 
-	const imageWidth = 185;
+	export let imageWidth = 185;
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
