@@ -14,6 +14,7 @@
 <div class="grid grid-cols-4 px-6 [&>*]:mb-4 [&>*]:w-80">
 	{#each data.results as movie}
 		<MovieCard
+			id={movie.id}
 			title={movie.title}
 			releaseDate={movie.release_date}
 			poster={movie.poster_path}
