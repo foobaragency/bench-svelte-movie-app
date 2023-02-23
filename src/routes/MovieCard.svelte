@@ -9,7 +9,7 @@
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
-<a href="/movie/{movie.id}">
+<a href="/movie/{movie.id}" target="_self">
 	<figure class="mx-auto p-8 md:p-0 w-44">
 		<img
 			class="mx-auto rounded-xl shadow-md  shadow-slate-400 md:h-auto"
