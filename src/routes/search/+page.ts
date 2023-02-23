@@ -1,5 +1,6 @@
-/** @type {import('./$types').PageLoad} */
-export async function load({ url }) {
+import type { PageLoad } from "../$types";
+
+export const load: PageLoad = async ({ url }) => {
   const query = url.searchParams.get('query') || '';
 
   const response = await fetch(

@@ -1,20 +1,13 @@
 <script lang="ts">
+	import type { Movie } from '../types/movie';
 	import MovieCard from './MovieCard.svelte';
+	import Slider from './Slider.svelte';
 
-	export let movies: { id: string; title: string; release_date: string; poster_path: string }[];
+	export let movies: Movie[];
 </script>
 
-<div style="overflow: scroll hidden">
-	<div style="min-width: 100%; display: table;">
-		<div class="flex flex-nowrap pb-2 [&>*]:mr-2 [&>*]:w-48">
-			{#each movies as movie}
-				<MovieCard
-					id={movie.id}
-					title={movie.title}
-					releaseDate={movie.release_date}
-					poster={movie.poster_path}
-				/>
-			{/each}
-		</div>
-	</div>
-</div>
+<Slider>
+	{#each movies as movie}
+		<MovieCard {movie} />
+	{/each}
+</Slider>

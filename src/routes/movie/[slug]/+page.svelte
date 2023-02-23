@@ -1,17 +1,30 @@
-<script>
+<script lang="ts">
+	import type { MovieDetails } from '../../../types/movie';
+	import CastMemberCard from './CastMemberCard.svelte';
+	import Slider from '../../Slider.svelte';
+	import Category from '../../Category.svelte';
+
 	/** @type {import('./$types').PageData} */
-	export let data;
-	console.log('data', data);
-	const { id, title, poster_path, backdrop_path, release_date, overview, genres } = data;
+	export let data: MovieDetails;
+	const { title, tagline, poster_path, backdrop_path, release_date, overview, genres } = data.movie;
+	const { cast, crew } = data.credits;
+	const { similar } = data;
+	console.log(similar);
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
 <div class="bg-cover" style="background-image: url({IMAGE_BASE_URL}/original/{backdrop_path})">
 	<div
-		class="w-full h-full flex flex-row p-12 backdrop-blur-sm from-gray-900 to-transparent bg-gradient-to-b"
+		class="w-full h-full flex md:gap-12 md:flex-row flex-col p-12
+    backdrop-blur-sm from-gray-900 to-transparent bg-gradient-to-b"
 	>
-		<img src="{IMAGE_BASE_URL}/w500/{poster_path}" alt={title} class="rounded-xl shadow-xl mr-12" />
-		<div class="flex flex-col">
+		<img
+			src="{IMAGE_BASE_URL}/original/{poster_path}"
+			alt={title}
+			class="rounded-md
+      shadow-xl w-120 h-full w-56 md:w-96"
+		/>
+		<div class="flex flex-col max-w-screen-lg">
 			<h1 class="text-white text-6xl">
 				{title}
 				<span class="opacity-80">({new Date(release_date).getFullYear()})</span>
@@ -20,9 +33,24 @@
 				>{release_date} |
 				<span>{genres.map((genre) => genre.name).join(', ')}</span>
 			</span>
-			<span class="text-white opacity-80 mt-4 italic">{data.tagline}</span>
+			<span class="text-white opacity-80 mt-4 italic">{tagline}</span>
 			<h2 class="text-white font-medium mt-4 text-2xl">Overview</h2>
 			<p class="text-white">{overview}</p>
+			<h2 class="text-white font-medium mt-4 text-2xl">Directed by</h2>
+			<p class="text-white">
+				{crew.find((member) => member.job === 'Director')?.name || 'Unknown'}
+			</p>
+			<h2 class="font-medium mt-4 text-2xl text-white">Cast</h2>
+			<Slider>
+				{#each cast.slice(0, 10) as actor}
+					<CastMemberCard {actor} />
+				{/each}
+			</Slider>
 		</div>
 	</div>
+</div>
+
+<div class="p-12">
+	<h2 class="text:xl mb-3 font-bold lg:text-3xl">More like this 🔥</h2>
+	<Category movies={similar} />
 </div>
