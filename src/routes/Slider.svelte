@@ -1,3 +1,3 @@
-<div class="flex overflow-x-auto space-x-5">
+<div class="flex overflow-x-auto [&>*]:mr-2">
 	<slot />
 </div>
