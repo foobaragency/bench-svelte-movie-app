@@ -30,8 +30,8 @@
 				<span class="opacity-80">({new Date(release_date).getFullYear()})</span>
 			</h1>
 			<span class="text-white before:marker"
-				>{release_date} |
-				{genres.map((genre) => genre.name).join(', ')} |
+				>{release_date} &#x2022;
+				{genres.map((genre) => genre.name).join(', ')} &#x2022;
 				{Math.floor(runtime / 60)}h {runtime % 60}m
 			</span>
 			<span class="text-white opacity-80 mt-4 italic">{tagline}</span>
