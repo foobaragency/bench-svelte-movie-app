@@ -25,7 +25,7 @@
 	</form>
 </div>
 
-<div class="px-1.5">
+<div class="px-10">
 	<h2 class="text:xl mb-3 font-bold lg:text-3xl">Most popular 🔥</h2>
 	<Category movies={data.popular.results} />
 	<h2 class="text:xl mb-3 font-bold lg:text-3xl">Upcoming 👀</h2>

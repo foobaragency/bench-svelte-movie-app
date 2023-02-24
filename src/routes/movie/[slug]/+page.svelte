@@ -6,10 +6,10 @@
 
 	/** @type {import('./$types').PageData} */
 	export let data: MovieDetails;
-	const { title, tagline, poster_path, backdrop_path, release_date, overview, genres } = data.movie;
+	const { title, tagline, poster_path, backdrop_path, release_date, runtime, overview, genres } =
+		data.movie;
 	const { cast, crew } = data.credits;
 	const { similar } = data;
-	console.log(similar);
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
@@ -22,16 +22,17 @@
 			src="{IMAGE_BASE_URL}/original/{poster_path}"
 			alt={title}
 			class="rounded-md
-      shadow-xl w-120 h-full w-56 md:w-96"
+      shadow-xl w-120 h-full w-56"
 		/>
-		<div class="flex flex-col max-w-screen-lg">
+		<div class="flex flex-col min-w-0">
 			<h1 class="text-white text-6xl">
 				{title}
 				<span class="opacity-80">({new Date(release_date).getFullYear()})</span>
 			</h1>
 			<span class="text-white before:marker"
 				>{release_date} |
-				<span>{genres.map((genre) => genre.name).join(', ')}</span>
+				{genres.map((genre) => genre.name).join(', ')} |
+				{Math.floor(runtime / 60)}h {runtime % 60}m
 			</span>
 			<span class="text-white opacity-80 mt-4 italic">{tagline}</span>
 			<h2 class="text-white font-medium mt-4 text-2xl">Overview</h2>
