@@ -12,13 +12,20 @@ export type Movie = {
   title: string;
 };
 
-export type Credits = {
+export type MovieCredits = {
   cast: CastMember[];
   crew: CrewMember[];
 };
 
 export type MovieDetails = {
   movie: Movie;
-  credits: Credits;
+  credits: MovieCredits;
   similar: Movie[];
-}; 
+};
+
+export type MovieDisplay = {
+  id: string;
+  title: string;
+  poster_path: string;
+  release_date: string;
+}

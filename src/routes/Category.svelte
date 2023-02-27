@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Movie } from '../types/movie';
+	import type { MovieDisplay } from '@/types/movie';
 	import MovieCard from './MovieCard.svelte';
 	import Slider from './Slider.svelte';
 
-	export let movies: Movie[];
+	export let movies: MovieDisplay[];
 </script>
 
 <Slider>

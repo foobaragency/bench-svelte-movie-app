@@ -1,13 +1,22 @@
 <script lang="ts">
-	import type { MovieDetails } from '../../../types/movie';
-	import CastMemberCard from './CastMemberCard.svelte';
+	import PersonCard from './PersonCard.svelte';
 	import Slider from '../../Slider.svelte';
 	import Category from '../../Category.svelte';
+	import type { PageData } from './$types';
 
 	/** @type {import('./$types').PageData} */
-	export let data: MovieDetails;
-	const { title, tagline, poster_path, backdrop_path, release_date, runtime, overview, genres } =
-		data.movie;
+	export let data: PageData;
+	const {
+		title,
+		id,
+		tagline,
+		poster_path,
+		backdrop_path,
+		release_date,
+		runtime,
+		overview,
+		genres
+	} = data.movie;
 	const { cast, crew } = data.credits;
 	const { similar } = data;
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
@@ -44,10 +53,10 @@
 			<h2 class="font-medium mt-4 text-2xl text-white">Cast</h2>
 			<Slider>
 				{#each cast.slice(0, 10) as actor}
-					<CastMemberCard {actor} />
+					<PersonCard person={actor} />
 				{/each}
 				<a
-					href="#"
+					href="/movie/{id}/credits"
 					class="text-white self-center w-20 shrink-0 mx-3
           hover:underline">See all &rarr;</a
 				>
