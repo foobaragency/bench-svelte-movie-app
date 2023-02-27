@@ -46,6 +46,11 @@
 				{#each cast.slice(0, 10) as actor}
 					<CastMemberCard {actor} />
 				{/each}
+				<a
+					href="#"
+					class="text-white self-center w-20 shrink-0 mx-3
+          hover:underline">See all &rarr;</a
+				>
 			</Slider>
 		</div>
 	</div>

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { CastMember } from '../../../types/castAndCrew';
+	import type { CastMember } from '@/types/castAndCrew';
 
 	export let actor: CastMember;
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
-<figure class="bg-white shadow-xl rounded-xl mx-auto p-8 md:p-0 w-24">
+<figure class="bg-white shadow-xl rounded-xl w-36 my-2 shrink-0">
 	<div class="bg-gray-200 rounded-t-xl">
 		{#if actor.profile_path}
 			<img
