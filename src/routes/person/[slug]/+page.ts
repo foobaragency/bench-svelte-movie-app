@@ -10,8 +10,9 @@ export const load: PageLoad = async ({ params, fetch }): Promise<{ details: Pers
   const combinedCredits = await fetch(
     `https://api.themoviedb.org/3/person/${params.slug}/combined_credits?api_key=061b5b5397826fffc37bcaad1cc6814f`
   );
-  const { cast, crew }: { cast: MovieDisplay[], crew: MovieDisplay[] } = await combinedCredits.json();
+  const { cast, crew }: { cast: (MovieDisplay & { popularity: number })[], crew: (MovieDisplay & { popularity: number })[] } = await combinedCredits.json();
+  const allCredits = [...cast, ...crew].sort((a, b) => b.popularity - a.popularity);
 
-  return { details: await personDetails.json(), credits: [...cast, ...crew] };
+  return { details: await personDetails.json(), credits: allCredits };
 
 }

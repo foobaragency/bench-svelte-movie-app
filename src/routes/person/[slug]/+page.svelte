@@ -7,17 +7,24 @@
 	export let data: PageData;
 
 	const { details, credits } = data;
+	console.log(credits);
 
 	const personalInfo: { label: string; value: string }[] = [
-		{
-			label: 'Born',
-			value: details.birthday
-		},
+		...((details.birthday && [
+			{
+				label: 'Born',
+				value: details.birthday
+			}
+		]) ||
+			[]),
 		...((details.deathday && [{ label: 'Died', value: details.deathday }]) || []),
-		{
-			label: 'Also known as',
-			value: details.also_known_as
-		},
+		...((details.also_known_as && [
+			{
+				label: 'Also known as',
+				value: details.also_known_as
+			}
+		]) ||
+			[]),
 		{
 			label: 'Known for',
 			value: details.known_for_department

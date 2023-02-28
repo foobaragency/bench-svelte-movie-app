@@ -20,7 +20,7 @@ export type MovieCredits = {
 export type MovieDetails = {
   movie: Movie;
   credits: MovieCredits;
-  similar: Movie[];
+  similar: MovieDisplay[];
 };
 
 export type MovieDisplay = {

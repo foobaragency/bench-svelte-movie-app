@@ -18,7 +18,9 @@
 		genres
 	} = data.movie;
 	const { cast, crew } = data.credits;
+	const director = crew.find((member) => member.job === 'Director');
 	const { similar } = data;
+	console.log(similar);
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
@@ -47,9 +49,11 @@
 			<h2 class="text-white font-medium mt-4 text-2xl">Overview</h2>
 			<p class="text-white">{overview}</p>
 			<h2 class="text-white font-medium mt-4 text-2xl">Directed by</h2>
-			<p class="text-white">
-				{crew.find((member) => member.job === 'Director')?.name || 'Unknown'}
-			</p>
+			<span>
+				<a href="/person/{director?.id}" class="text-white hover:underline">
+					{director?.name || 'Unknown'}
+				</a>
+			</span>
 			<h2 class="font-medium mt-4 text-2xl text-white">Cast</h2>
 			<Slider>
 				{#each cast.slice(0, 10) as actor}
