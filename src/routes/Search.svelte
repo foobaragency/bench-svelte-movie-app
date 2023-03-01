@@ -2,15 +2,16 @@
 	import type { MovieDisplay } from '@/types/movie';
 
 	export let placeholder = 'Search movies...';
+	type SearchSuggestion = MovieDisplay & { vote_count: number };
 
-	let autocompleteResults: MovieDisplay[] = [];
+	let autocompleteResults: SearchSuggestion[] = [];
 	const handleSearchInputChange = async (event) => {
 		const response = await fetch(
 			`https://api.themoviedb.org/3/search/movie?query=${event.target.value}&api_key=061b5b5397826fffc37bcaad1cc6814f`
 		);
 		autocompleteResults = (await response.json()).results
 			.slice(0, 7)
-			.sort((a, b) => b.vote_count - a.vote_count);
+			.sort((a: SearchSuggestion, b: SearchSuggestion) => b.vote_count - a.vote_count);
 	};
 </script>
 
