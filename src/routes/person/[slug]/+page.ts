@@ -2,6 +2,12 @@ import type { MovieDisplay } from '@/types/movie';
 import type { PersonDetails } from '../../../types/person';
 import type { PageLoad } from './$types';
 
+type CreditsResponse = MovieDisplay & {
+	popularity: number;
+	vote_count: number;
+	media_type: string;
+};
+
 export const load: PageLoad = async ({
 	params,
 	fetch
@@ -17,10 +23,18 @@ export const load: PageLoad = async ({
 		cast,
 		crew
 	}: {
-		cast: (MovieDisplay & { popularity: number })[];
-		crew: (MovieDisplay & { popularity: number })[];
+		cast: CreditsResponse[];
+		crew: CreditsResponse[];
 	} = await combinedCredits.json();
-	const allCredits = [...cast, ...crew];
+	const allCredits = [...cast, ...crew]
+		.filter((credit) => credit.media_type === 'movie')
+		.sort((a, b) => b.vote_count - a.vote_count)
+		.slice(0, 10);
 
-	return { details: await personDetails.json(), credits: allCredits };
+	return {
+		details: await personDetails.json(),
+		credits: allCredits.filter(
+			(credit, index) => allCredits.findIndex((other) => other.id === credit.id) === index
+		)
+	};
 };

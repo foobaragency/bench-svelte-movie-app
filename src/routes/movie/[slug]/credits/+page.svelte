@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { CrewMember } from '@/types/castAndCrew';
-	import type { Credits } from '@/types/movie';
-	import PersonCard from '../PersonCard.svelte';
+	import PersonCard from '@/components/PersonCard';
+	import type { PageData } from './$types';
 
-	/** @type {import('./$types').PageData} */
-	export let data: Credits;
+	export let data: PageData;
 
-	const { cast, crew } = data;
+	const { cast, crew } = data.credits;
 	const crewByJob: { [job: string]: CrewMember[] } = {};
 	crew.forEach((crewMember) => {
 		if (!crewByJob[crewMember.job]) {
@@ -18,7 +17,20 @@
 
 	const responsiveGrid = `grid grid-cols-2 sm:grid-cols-3 m:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6
 gap-1`;
+	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
+
+<div class="flex align-center gap-10 p-10 bg-slate-500 max-h-40">
+	<img
+		class="w-1 h-auto"
+		src="{IMAGE_BASE_URL}/original{data.movie.poster_path}"
+		alt={data.movie.title}
+	/>
+	<h1 class="text-white text-3xl">
+		{data.movie.title}
+		<span class="opacity-80">({new Date(data.movie.release_date).getFullYear()})</span>
+	</h1>
+</div>
 
 <div class="px-10">
 	<h2 class="text:xl mb-3 font-bold lg:text-3xl mt-10">Cast 🍿</h2>

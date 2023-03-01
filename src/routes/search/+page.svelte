@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import MovieCard from '../MovieCard.svelte';
+	import MovieCard from '@/components/MovieCard';
 	const query = $page.url.searchParams.get('query');
 	import Search from '../Search.svelte';
 
@@ -12,7 +12,11 @@
 	<Search placeholder={query || ''} />
 </form>
 <div class="grid grid-cols-4 px-6 [&>*]:mb-4 [&>*]:w-80">
-	{#each data.results as movie}
-		<MovieCard {movie} />
-	{/each}
+	{#if data.results.length > 0}
+		{#each data.results as movie}
+			<MovieCard {movie} />
+		{/each}
+	{:else}
+		<span>no results for '{query}' 🙁</span>
+	{/if}
 </div>
