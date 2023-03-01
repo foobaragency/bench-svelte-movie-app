@@ -6,12 +6,20 @@
 	export let data: PageData;
 
 	const { details, credits } = data;
+	console.log(details);
 
 	const personalInfo: { label: string; value: string }[] = [
 		...((details.birthday && [
 			{
 				label: 'Born',
 				value: details.birthday
+			}
+		]) ||
+			[]),
+		...((details.place_of_birth && [
+			{
+				label: 'Place of Birth',
+				value: details.place_of_birth
 			}
 		]) ||
 			[]),

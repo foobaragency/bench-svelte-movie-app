@@ -7,10 +7,12 @@
 	function isActor(person: CastMember | CrewMember): person is CastMember {
 		return !!(person as CastMember).character;
 	}
+
+	const role = isActor(person) ? person.character : person.job;
 </script>
 
-<figure class="bg-white shadow-xl rounded-xl w-36 my-2 shrink-0">
-	<a href="/person/{person.id}">
+<a href="/person/{person.id}">
+	<figure class="bg-white shadow-xl rounded-xl w-36 my-2 shrink-0 h-72">
 		<div class="bg-gray-200 rounded-t-xl">
 			{#if person.profile_path}
 				<img
@@ -34,11 +36,13 @@
 				</svg>
 			{/if}
 		</div>
-	</a>
-	<figcaption class="p-1.5 text-slate-900 dark:text-slate-700">
-		<div class="text-sm font-bold">{person.name}</div>
-		<div class="text-xs font-thin">
-			{isActor(person) ? person.character : person.job}
-		</div>
-	</figcaption>
-</figure>
+		<figcaption class="p-1.5 text-slate-900 dark:text-slate-700">
+			<div class="text-sm font-bold">{person.name}</div>
+			{#if role}
+				<div class="text-xs font-thin">
+					{role}
+				</div>
+			{/if}
+		</figcaption>
+	</figure>
+</a>

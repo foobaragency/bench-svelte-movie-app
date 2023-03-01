@@ -1,6 +1,6 @@
 import type { MovieDisplay } from '@/types/movie';
 import type { PersonDetails } from '../../../types/person';
-import type { PageLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 
 type CreditsResponse = MovieDisplay & {
 	popularity: number;
@@ -8,7 +8,7 @@ type CreditsResponse = MovieDisplay & {
 	media_type: string;
 };
 
-export const load: PageLoad = async ({
+export const load: LayoutServerLoad = async ({
 	params,
 	fetch
 }): Promise<{ details: PersonDetails; credits: MovieDisplay[] }> => {
