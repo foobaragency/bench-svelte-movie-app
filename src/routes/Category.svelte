@@ -1,7 +1,7 @@
 <script lang="ts">
+	import Slider from '@/components/Slider';
+	import MovieCard from '@/components/MovieCard';
 	import type { MovieDisplay } from '@/types/movie';
-	import MovieCard from './MovieCard.svelte';
-	import Slider from './Slider.svelte';
 
 	export let movies: MovieDisplay[];
 </script>

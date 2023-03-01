@@ -1,9 +1,3 @@
-<script>
-	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
-</script>
-
 <header>
 	<nav class="bg-gray-800">
 		<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -62,11 +56,11 @@
 					<div class="hidden sm:ml-6 sm:block">
 						<div class="flex space-x-4">
 							<a
-								href="#"
+								href="/"
 								class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
 								aria-current="page"
 							>
-								Dashboard
+								Movies
 							</a>
 
 							<a

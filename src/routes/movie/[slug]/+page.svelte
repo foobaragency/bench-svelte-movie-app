@@ -1,6 +1,6 @@
 <script lang="ts">
-	import PersonCard from './PersonCard.svelte';
-	import Slider from '../../Slider.svelte';
+	import PersonCard from '@/components/PersonCard';
+	import Slider from '@/components/Slider';
 	import Category from '../../Category.svelte';
 	import type { PageData } from './$types';
 

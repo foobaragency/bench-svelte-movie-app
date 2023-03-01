@@ -1,13 +1,11 @@
 <script lang="ts">
-	import MovieCard from '@/components/MovieCard/MovieCard.svelte';
-	import Slider from '@/routes/Slider.svelte';
+	import Category from '@/routes/Category.svelte';
 	import type { PageData } from './$types';
 
 	/** @type {import('./$types').PageData} */
 	export let data: PageData;
 
 	const { details, credits } = data;
-	console.log(credits);
 
 	const personalInfo: { label: string; value: string }[] = [
 		...((details.birthday && [
@@ -59,10 +57,6 @@
 			{/each}
 		</div>
 		<h2 class="text-2xl mt-4">Known for</h2>
-		<Slider>
-			{#each credits as movie}
-				<MovieCard {movie} />
-			{/each}
-		</Slider>
+		<Category movies={credits} />
 	</div>
 </div>
