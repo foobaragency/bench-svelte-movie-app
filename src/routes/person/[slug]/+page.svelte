@@ -64,11 +64,14 @@
 			{#each credits.slice(0, 10) as movie}
 				<MovieCard {movie} />
 			{/each}
-			<a
-				href="/person/{details.id}/credits"
-				class="text-black self-center w-20 shrink-0 mx-3
-          hover:underline">See all &rarr;</a
-			>
+			{#if credits.length > 10}
+				<a
+					href="/person/{details.id}/credits"
+					class="text-black self-center w-20 shrink-0 mx-3
+          hover:underline"
+					>See all &rarr;
+				</a>
+			{/if}
 		</Slider>
 	</div>
 </div>
