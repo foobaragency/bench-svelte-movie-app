@@ -5,9 +5,12 @@
 	type SearchSuggestion = MovieDisplay & { vote_count: number };
 
 	let autocompleteResults: SearchSuggestion[] = [];
-	const handleSearchInputChange = async (event) => {
+
+	const handleSearchInputChange = async (event: Event) => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/search/movie?query=${event.target.value}&api_key=061b5b5397826fffc37bcaad1cc6814f`
+			`https://api.themoviedb.org/3/search/movie?query=${
+				(event.target as HTMLInputElement).value
+			}&api_key=061b5b5397826fffc37bcaad1cc6814f`
 		);
 		autocompleteResults = (await response.json()).results
 			.slice(0, 7)

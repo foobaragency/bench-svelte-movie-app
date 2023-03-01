@@ -19,6 +19,6 @@ export const load: PageLoad = async ({ params, fetch }): Promise<MovieDetails> =
 	return {
 		movie: await movieDetails.json(),
 		credits: await credits.json(),
-		similar: similar.results
+		similar: similar.results.sort((a, b) => b.vote_count - a.vote_count)
 	};
 };
