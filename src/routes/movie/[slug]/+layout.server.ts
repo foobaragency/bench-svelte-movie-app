@@ -1,7 +1,7 @@
 import type { MovieDetails, MovieDisplay } from '../../../types/movie';
-import type { PageLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 
-export const load: PageLoad = async ({ params, fetch }): Promise<MovieDetails> => {
+export const load: LayoutServerLoad = async ({ params, fetch }): Promise<MovieDetails> => {
 	const movieDetails = await fetch(
 		`https://api.themoviedb.org/3/movie/${params.slug}?api_key=061b5b5397826fffc37bcaad1cc6814f`
 	);
@@ -9,7 +9,7 @@ export const load: PageLoad = async ({ params, fetch }): Promise<MovieDetails> =
 	const similarMovies = await fetch(
 		`https://api.themoviedb.org/3/movie/${params.slug}/similar?api_key=061b5b5397826fffc37bcaad1cc6814f`
 	);
-	const similar: { results: (MovieDisplay & { popularity: number })[] } =
+	const similar: { results: (MovieDisplay & { popularity: number; vote_count: number })[] } =
 		await similarMovies.json();
 
 	const credits = await fetch(
