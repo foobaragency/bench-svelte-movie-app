@@ -1,5 +1,15 @@
 <script lang="ts">
+	import type { MovieDisplay } from '@/types/movie';
+
 	export let placeholder = 'Search movies...';
+
+	let autocompleteResults: MovieDisplay[] = [];
+	const handleSearchInputChange = async (event) => {
+		const response = await fetch(
+			`https://api.themoviedb.org/3/search/movie?query=${event.target.value}&api_key=061b5b5397826fffc37bcaad1cc6814f`
+		);
+		autocompleteResults = (await response.json()).results.slice(0, 7);
+	};
 </script>
 
 <div class="relative">
@@ -22,11 +32,28 @@
 	</div>
 	<input
 		type="search"
+		autocomplete="off"
 		name="query"
 		class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-gray-500 focus:ring-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-500 dark:focus:ring-gray-500 md:text-base lg:text-lg"
 		{placeholder}
 		required
+		on:input={handleSearchInputChange}
 	/>
+	{#if autocompleteResults.length > 0}
+		<div class="w-full bg-gray-50 absolute flex flex-col rounded-lg shadow-md">
+			{#each autocompleteResults as result}
+				<a
+					href="/movie/{result.id}"
+					class="border-b border-gray-300
+          last:border-none p-5 hover:bg-slate-200
+          first:border-t-lg last:border-b-lg"
+				>
+					{result.title}
+					<span class="opacity-80">({new Date(result.release_date).getFullYear()})</span>
+				</a>
+			{/each}
+		</div>
+	{/if}
 	<button
 		type="submit"
 		class="absolute top-0 right-0 h-full rounded-r-lg border border-gray-300 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:bg-gray-600 dark:text-slate-50 dark:hover:bg-gray-700 dark:focus:ring-gray-800"

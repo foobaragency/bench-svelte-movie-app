@@ -20,7 +20,6 @@
 	const { cast, crew } = data.credits;
 	const director = crew.find((member) => member.job === 'Director');
 	const { similar } = data;
-	console.log(similar);
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
