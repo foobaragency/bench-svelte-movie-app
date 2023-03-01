@@ -8,7 +8,9 @@
 		const response = await fetch(
 			`https://api.themoviedb.org/3/search/movie?query=${event.target.value}&api_key=061b5b5397826fffc37bcaad1cc6814f`
 		);
-		autocompleteResults = (await response.json()).results.slice(0, 7);
+		autocompleteResults = (await response.json()).results
+			.slice(0, 7)
+			.sort((a, b) => b.vote_count - a.vote_count);
 	};
 </script>
 
@@ -46,7 +48,7 @@
 					href="/movie/{result.id}"
 					class="border-b border-gray-300
           last:border-none p-5 hover:bg-slate-200
-          first:border-t-lg last:border-b-lg"
+          first:rounded-t-lg last:rounded-b-lg"
 				>
 					{result.title}
 					<span class="opacity-80">({new Date(result.release_date).getFullYear()})</span>
