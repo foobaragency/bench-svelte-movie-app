@@ -3,7 +3,6 @@
 	import Slider from '@/components/Slider';
 	import type { PageData } from './$types';
 
-	/** @type {import('./$types').PageData} */
 	export let data: PageData;
 
 	const { details, credits } = data;
@@ -20,7 +19,7 @@
 		...((details.also_known_as && [
 			{
 				label: 'Also known as',
-				value: details.also_known_as
+				value: details.also_known_as.join('\r\n')
 			}
 		]) ||
 			[]),
@@ -33,6 +32,7 @@
 			value: credits.length.toString()
 		}
 	];
+	console.log(personalInfo);
 
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
@@ -49,10 +49,11 @@
 		{#each personalInfo as item}
 			<div class="max-w-xs mb-4">
 				<p class="font-bold">{item.label}</p>
-				<p>{item.value}</p>
+				<span class="whitespace-pre-line">{item.value}</span>
 			</div>
 		{/each}
 	</div>
+
 	<div class="flex flex-col min-w-0">
 		<h1 class="text-6xl">{details.name}</h1>
 
