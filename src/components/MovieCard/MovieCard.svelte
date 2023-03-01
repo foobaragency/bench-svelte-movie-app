@@ -7,7 +7,7 @@
 </script>
 
 <a href="/movie/{movie.id}" target="_self">
-	<figure class="mx-auto p-8 md:p-0 w-44">
+	<figure class="w-44">
 		{#if movie.poster_path}
 			<img
 				class="mx-auto md:h-auto rounded-xl shadow-md"

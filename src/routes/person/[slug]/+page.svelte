@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Category from '@/routes/Category.svelte';
+	import MovieCard from '@/components/MovieCard';
+	import Slider from '@/components/Slider';
 	import type { PageData } from './$types';
 
 	/** @type {import('./$types').PageData} */
@@ -59,6 +60,15 @@
 		<p class="mt-2">{details.biography}</p>
 
 		<h2 class="text-2xl my-4">Known for</h2>
-		<Category movies={credits} />
+		<Slider>
+			{#each credits.slice(0, 10) as movie}
+				<MovieCard {movie} />
+			{/each}
+			<a
+				href="/person/{details.id}/credits"
+				class="text-black self-center w-20 shrink-0 mx-3
+          hover:underline">See all &rarr;</a
+			>
+		</Slider>
 	</div>
 </div>

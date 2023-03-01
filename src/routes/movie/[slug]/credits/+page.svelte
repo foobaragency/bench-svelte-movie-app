@@ -21,6 +21,7 @@ gap-1`;
 </script>
 
 <div class="flex align-center gap-10 p-10 bg-slate-500 max-h-40">
+	<!-- TODO: fix this image style -->
 	<img
 		class="w-1 h-auto"
 		src="{IMAGE_BASE_URL}/original{data.movie.poster_path}"

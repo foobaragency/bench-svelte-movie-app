@@ -28,8 +28,7 @@ export const load: PageLoad = async ({
 	} = await combinedCredits.json();
 	const allCredits = [...cast, ...crew]
 		.filter((credit) => credit.media_type === 'movie')
-		.sort((a, b) => b.vote_count - a.vote_count)
-		.slice(0, 10);
+		.sort((a, b) => b.vote_count - a.vote_count);
 
 	return {
 		details: await personDetails.json(),
