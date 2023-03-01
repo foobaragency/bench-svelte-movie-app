@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MovieCard from '@/routes/MovieCard.svelte';
+	import MovieCard from '@/components/MovieCard/MovieCard.svelte';
 	import Slider from '@/routes/Slider.svelte';
 	import type { PageData } from './$types';
 
