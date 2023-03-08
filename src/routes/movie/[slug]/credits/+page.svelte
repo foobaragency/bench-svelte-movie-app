@@ -20,17 +20,20 @@ gap-1`;
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
-<div class="flex align-center gap-10 p-10 bg-slate-500 max-h-40">
+<div class="flex items-center gap-5 p-5 bg-slate-500">
 	<!-- TODO: fix this image style -->
 	<img
-		class="w-1 h-auto"
+		class="w-24"
 		src="{IMAGE_BASE_URL}/original{data.movie.poster_path}"
 		alt={data.movie.title}
 	/>
-	<h1 class="text-white text-3xl">
-		{data.movie.title}
-		<span class="opacity-80">({new Date(data.movie.release_date).getFullYear()})</span>
-	</h1>
+	<div class="flex flex-col">
+		<h1 class="text-white text-3xl">
+			{data.movie.title}
+			<span class="opacity-80">({new Date(data.movie.release_date).getFullYear()})</span>
+		</h1>
+		<a href="/movie/{data.movie.id}" class="text-white hover:underline">&larr; Go back</a>
+	</div>
 </div>
 
 <div class="px-10">

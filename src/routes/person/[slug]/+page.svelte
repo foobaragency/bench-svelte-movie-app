@@ -6,7 +6,6 @@
 	export let data: PageData;
 
 	const { details, credits } = data;
-	console.log(details);
 
 	const personalInfo: { label: string; value: string }[] = [
 		...((details.birthday && [
@@ -40,7 +39,6 @@
 			value: credits.length.toString()
 		}
 	];
-	console.log(personalInfo);
 
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
