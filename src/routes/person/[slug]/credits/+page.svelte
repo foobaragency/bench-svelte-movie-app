@@ -1,11 +1,9 @@
 <script lang="ts">
+	import CardGrid from '@/components/CardGrid';
 	import MovieCard from '@/components/MovieCard';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	const responsiveGrid = `grid grid-cols-2 sm:grid-cols-3 m:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6
-gap-1`;
 </script>
 
 <div class="px-10">
@@ -13,9 +11,9 @@ gap-1`;
 		All Credits for
 		{data.details.name}
 	</h2>
-	<div class={responsiveGrid}>
+	<CardGrid>
 		{#each data.credits as movie}
 			<MovieCard {movie} />
 		{/each}
-	</div>
+	</CardGrid>
 </div>

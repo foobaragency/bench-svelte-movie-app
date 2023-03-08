@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { CrewMember } from '@/types/castAndCrew';
 	import PersonCard from '@/components/PersonCard';
+	import CardGrid from '@/components/CardGrid';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -15,12 +16,10 @@
 		}
 	});
 
-	const responsiveGrid = `grid grid-cols-2 sm:grid-cols-3 m:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6
-gap-1`;
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 </script>
 
-<div class="flex items-center gap-5 p-5 bg-slate-500">
+<div class="flex items-center gap-10 px-10 py-5 bg-slate-500">
 	<!-- TODO: fix this image style -->
 	<img
 		class="w-24"
@@ -38,18 +37,18 @@ gap-1`;
 
 <div class="px-10">
 	<h2 class="text:xl mb-3 font-bold lg:text-3xl mt-10">Cast 🍿</h2>
-	<div class={responsiveGrid}>
+	<CardGrid>
 		{#each cast as actor}
 			<PersonCard person={actor} />
 		{/each}
-	</div>
+	</CardGrid>
 	<h2 class="text:xl my-3 font-bold lg:text-3xl">Crew 🎥</h2>
 	{#each Object.keys(crewByJob) as job}
 		<h3 class="text-xl">{job}</h3>
-		<div class={responsiveGrid}>
+		<CardGrid>
 			{#each crewByJob[job] as jobMember}
 				<PersonCard person={jobMember} />
 			{/each}
-		</div>
+		</CardGrid>
 	{/each}
 </div>
