@@ -33,5 +33,7 @@
 		"vite": "^4.0.0"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"@tailwindcss/line-clamp": "^0.4.2"
+	}
 }

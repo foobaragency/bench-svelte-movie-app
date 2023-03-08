@@ -39,7 +39,7 @@
 		<figcaption class="p-1.5 text-slate-900 dark:text-slate-700">
 			<div class="text-sm font-bold">{person.name}</div>
 			{#if role}
-				<div class="text-xs font-thin">
+				<div class="text-xs font-thin line-clamp-2">
 					{role}
 				</div>
 			{/if}
